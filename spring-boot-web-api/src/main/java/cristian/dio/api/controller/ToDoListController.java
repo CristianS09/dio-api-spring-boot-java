@@ -39,17 +39,16 @@ public class ToDoListController {
     @PostMapping
     public ResponseEntity<String> saveToDoList(@RequestBody ToDoList toDoList){
         toDoListRepository.save(toDoList);
-        return new ResponseEntity<>("Todo save", HttpStatus.OK);
+        return new ResponseEntity<>("Saved", HttpStatus.OK);
     }
 
     //Delete uma todolist
     @DeleteMapping("/{id}")
-    //Se o id não existir será lançada uma exeção
+    //Se o id não existir será lançada uma exceção
     public ResponseEntity<String> deleteToDoList(@PathVariable Long id){
         try{
-
             if(!toDoListRepository.existsById(id)){
-                throw new IllegalArgumentException("Id doesn't exits");
+                throw new IllegalArgumentException("Id doesn't exist");
             }
 
             toDoListRepository.deleteById(id);
